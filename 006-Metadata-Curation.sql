@@ -1,0 +1,62 @@
+-- Databricks notebook source
+-- MAGIC %md
+-- MAGIC # Unity Catalog Lab: Simplified Data Discovery
+-- MAGIC
+-- MAGIC ## Learning Objectives
+-- MAGIC - Understand Unity Catalog's AI Generated Metadata
+-- MAGIC - Understand Unity Catalog's Curating Metadata
+-- MAGIC
+-- MAGIC Databricks' AI Generated Comments with Unity Catalog automatically creates descriptive documentation for Unity Catalog objects (catalogs, schemas, tables, columns, functions, models, and volumes) using AI. For governance stewards, it saves time by creating consistent documentation across all your data, helping teams find and understand data and ai assets faster without manual work.
+-- MAGIC
+-- MAGIC ## Prerequisites
+-- MAGIC - Completed Lab 1-5
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC
+-- MAGIC ### Steps to AI Generate Comments
+-- MAGIC
+-- MAGIC #### For Objects (Catalogs, Schemas, Tables, Functions, Models, Volumes)
+-- MAGIC
+-- MAGIC 1. **Open Catalog Explorer**
+-- MAGIC    - In your Databricks workspace, click **Catalog** from the left hand main menu navigation
+-- MAGIC
+-- MAGIC 2. **Select Your Object** 
+-- MAGIC    - Search or browse for the object in Unity Catalog you want to document
+-- MAGIC
+-- MAGIC 3. **Generate AI Comment**
+-- MAGIC    - In the **Description** section, click **AI generate**
+-- MAGIC    - Wait a moment for AI to generate the comment
+-- MAGIC
+-- MAGIC 4. **Review and Save**
+-- MAGIC    - Click **Accept** to use as-is, or **Edit** to modify before saving
+-- MAGIC
+-- MAGIC #### For Table Columns
+-- MAGIC
+-- MAGIC 1. **Open Catalog Explorer**
+-- MAGIC    - In your Databricks workspace, click **Catalog** from the left hand main menu navigation
+-- MAGIC
+-- MAGIC 2. **Select Your Table**
+-- MAGIC    - Search or browse for the table in Unity Catalog
+-- MAGIC
+-- MAGIC 3. **Generate Column Comments**
+-- MAGIC    - Above the table column headings, click **AI generate**
+-- MAGIC    - AI will generate comments for all columns
+-- MAGIC
+-- MAGIC 4. **Accept Comments**
+-- MAGIC    - Click the check mark next to each column comment to accept it
+-- MAGIC
+-- MAGIC ![Unity Catalog AI Generated Comments enablement](https://docs.databricks.com/aws/en/assets/images/ai-generate-button-49bc13979d2e474ab6847c6085735e4d.png)
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC from databricks.sdk import WorkspaceClient
+-- MAGIC
+-- MAGIC # Get current user context for governance and unique naming
+-- MAGIC w = WorkspaceClient()
+-- MAGIC user_name = w.current_user.me().user_name
+-- MAGIC user_id = w.current_user.me().user_name.split('@')[0]
+-- MAGIC
+-- MAGIC print(f"Your catalog is named: {user_id}")
